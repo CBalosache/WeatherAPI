@@ -24,14 +24,5 @@ namespace OpenWeatherMapAPITest.Open_Weather_Map_API_Service
             OWMADTO.DeserializeOpenWheatherMap(OWMACM.GetLatestWeatherInformation());
             OpenWeatherMapApiJson = JObject.Parse(OWMACM.GetLatestWeatherInformation());
         }
-        public int GetTotalMainClasses()
-        {
-            int count = 0;
-            foreach (var item in OpenWeatherMapApiJson["list"])
-            {
-                count++;
-            }
-            return count;
-        }
     }
 }

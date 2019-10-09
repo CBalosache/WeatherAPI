@@ -19,14 +19,9 @@ namespace OpenWeatherMapAPITest.Tests
             Assert.AreEqual("200", OWMAS.OWMADTO.OWMR.cod);
         }
         [Test()]
-        public void TotalRateCheck()
-        {
-            Assert.AreEqual(, OWMAS.GetTotalMainClasses());
-        }
-        [Test()]
         public void CheckGBPValue()
         {
-            //Assert.AreEqual("1570622400", OWMAS.OWMADTO.OWMR.list.DT);
+            Assert.AreEqual("1570622400", OWMAS.OWMADTO.OWMR.list[0].dt);
         }
     }
 }

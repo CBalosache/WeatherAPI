@@ -16,8 +16,6 @@ namespace OpenWeatherMapAPITest.Open_Weather_Map_API_Service.Data_Handling
         public Wind wind { get; set; }
         public Rain rain { get; set; }
         public Sys sys { get; set; }
-        public City city { get; set; }
-        public Coord coord { get; set; }
     }
     public class Main
     {
@@ -58,6 +56,7 @@ namespace OpenWeatherMapAPITest.Open_Weather_Map_API_Service.Data_Handling
     {
         public int id { get; set; }
         public string name { get; set; }
+        public Coord coord { get; set; }
         public string country { get; set; }
         public int population { get; set; }
         public int timezone { get; set; }
@@ -74,7 +73,7 @@ namespace OpenWeatherMapAPITest.Open_Weather_Map_API_Service.Data_Handling
         public string cod { get; set; }
         public string message { get; set; }
         public string cnt { get; set; }
-        public WeatherList weatherList { get; set; }
+        public WeatherList[] list { get; set; }
         public City city { get; set; }
     }
 }
