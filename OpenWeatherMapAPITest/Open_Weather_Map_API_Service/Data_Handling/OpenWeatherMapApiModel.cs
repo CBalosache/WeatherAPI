@@ -70,9 +70,9 @@ namespace OpenWeatherMapAPITest.Open_Weather_Map_API_Service.Data_Handling
     }
     public class OpenWheatherMapRoot
     {
-        public string cod { get; set; }
-        public string message { get; set; }
-        public string cnt { get; set; }
+        public int cod { get; set; }
+        public double message { get; set; }
+        public int cnt { get; set; }
         public WeatherList[] list { get; set; }
         public City city { get; set; }
     }
