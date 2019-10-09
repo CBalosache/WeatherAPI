@@ -28,17 +28,20 @@ namespace OpenWeatherMapAPITest.Tests
         {
             Assert.AreEqual(40, OWMAS.OWMADTO.OWMR.cnt);
         }
-
-
         [Test()]
         public void CheckTheFirstDt()
         {
             Assert.GreaterOrEqual(OWMAS.OWMADTO.OWMR.list[0].dt, 0);
         }
         [Test()]
-        public void CheckTemperature()
+        public void CheckTemperatureAgainstMinimumValue()
         {
-            Assert.AreEqual(288.86, OWMAS.OWMADTO.OWMR.list[0].main.temp);
+            Assert.GreaterOrEqual(OWMAS.OWMADTO.OWMR.list[0].main.temp, 185.00);
+        }
+        [Test()]
+        public void CheckTemperatureAgainstMaximumValue()
+        {
+            Assert.LessOrEqual(OWMAS.OWMADTO.OWMR.list[0].main.temp, 330.00);
         }
         [Test()]
         public void CheckHumidityAgainstMinimumValue()
