@@ -33,7 +33,7 @@ namespace OpenWeatherMapAPITest.Tests
         [Test()]
         public void CheckTheFirstDt()
         {
-            Assert.AreEqual("1570622400", OWMAS.OWMADTO.OWMR.list[0].dt);
+            Assert.GreaterOrEqual(OWMAS.OWMADTO.OWMR.list[0].dt, 0);
         }
         [Test()]
         public void CheckTemperature()
@@ -41,9 +41,14 @@ namespace OpenWeatherMapAPITest.Tests
             Assert.AreEqual(288.86, OWMAS.OWMADTO.OWMR.list[0].main.temp);
         }
         [Test()]
-        public void CheckHumidity()
+        public void CheckHumidityAgainstMinimumValue()
         {
-            Assert.AreEqual(288.86, OWMAS.OWMADTO.OWMR.list[0].main.humidity);
+            Assert.GreaterOrEqual(OWMAS.OWMADTO.OWMR.list[0].main.humidity, 0);
+        }
+        [Test()]
+        public void CheckHumidityAgainstMaxiumValue()
+        {
+            Assert.LessOrEqual(OWMAS.OWMADTO.OWMR.list[0].main.humidity, 100);
         }
         [Test()]
         public void CheckWeatherDescription()
@@ -66,14 +71,29 @@ namespace OpenWeatherMapAPITest.Tests
             Assert.GreaterOrEqual(OWMAS.OWMADTO.OWMR.list[0].rain.threeh, 0.00);
         }
         [Test()]
-        public void CheckSys()
+        public void CheckSysDay()
         {
             Assert.AreEqual('d', OWMAS.OWMADTO.OWMR.list[0].sys.pod);
         }
         [Test()]
+        public void CheckSysNight()
+        {
+            Assert.AreEqual('n', OWMAS.OWMADTO.OWMR.list[0].sys.pod);
+        }
+        [Test()]
+        public void CheckSysNotDay()
+        {
+            Assert.AreNotEqual('d', OWMAS.OWMADTO.OWMR.list[0].sys.pod);
+        }
+        [Test()]
+        public void CheckSysNotNight()
+        {
+            Assert.AreNotEqual('n', OWMAS.OWMADTO.OWMR.list[0].sys.pod);
+        }
+        [Test()]
         public void CheckDt_txt()
         {
-            Assert.AreEqual("2019-10-09 21:00:00", OWMAS.OWMADTO.OWMR.list[0].dt_txt);
+            Assert.AreEqual(String.Format("{0:d/MM/yyyy}", OWMAS.OWMADTO.OWMR.list[0].dt_txt), OWMAS.OWMADTO.OWMR.list[0].dt_txt);
         }
 
 
@@ -108,7 +128,7 @@ namespace OpenWeatherMapAPITest.Tests
         [Test()]
         public void CheckCountry()
         {
-            Assert.AreEqual("GB", OWMAS.OWMADTO.OWMR.city.name);
+            Assert.AreEqual("GB", OWMAS.OWMADTO.OWMR.city.country);
         }
         [Test()]
         public void CheckPopulation()
