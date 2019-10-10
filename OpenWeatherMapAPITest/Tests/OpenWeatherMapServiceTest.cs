@@ -56,12 +56,17 @@ namespace OpenWeatherMapAPITest.Tests
         [Test()]
         public void CheckWeatherDescription()
         {
-            Assert.AreEqual("light rain", OWMAS.OWMADTO.OWMR.list[0].weather[0].description);
+            Assert.IsNotEmpty(OWMAS.OWMADTO.OWMR.list[0].weather[0].description);
         }
         [Test()]
-        public void CheckClouds()
+        public void CheckCloudsAgainstMinimumValue()
         {
-            Assert.AreEqual(100, OWMAS.OWMADTO.OWMR.list[0].clouds.all);
+            Assert.GreaterOrEqual(OWMAS.OWMADTO.OWMR.list[0].clouds.all, 0);
+        }
+        [Test()]
+        public void CheckCloudsAgainstMaximumValue()
+        {
+            Assert.LessOrEqual(OWMAS.OWMADTO.OWMR.list[0].clouds.all, 100);
         }
         [Test()]
         public void CheckWind()
@@ -69,9 +74,14 @@ namespace OpenWeatherMapAPITest.Tests
             Assert.GreaterOrEqual(OWMAS.OWMADTO.OWMR.list[0].wind.speed, 0.00);
         }
         [Test()]
-        public void CheckRain()
+        public void CheckRainExistence()
         {
-            Assert.GreaterOrEqual(OWMAS.OWMADTO.OWMR.list[0].rain.threeh, 0.00);
+            Assert.IsNotNull(OWMAS.OWMADTO.OWMR.list[0].rain);
+        }
+        [Test()]
+        public void CheckRainNonExistence()
+        {
+            Assert.IsNull(OWMAS.OWMADTO.OWMR.list[0].rain);
         }
         [Test()]
         public void CheckSysDay()
@@ -98,8 +108,6 @@ namespace OpenWeatherMapAPITest.Tests
         {
             Assert.AreEqual(String.Format("{0:d/MM/yyyy}", OWMAS.OWMADTO.OWMR.list[0].dt_txt), OWMAS.OWMADTO.OWMR.list[0].dt_txt);
         }
-
-
         [Test()]
         public void CheckCityId()
         {
@@ -146,7 +154,7 @@ namespace OpenWeatherMapAPITest.Tests
         [Test()]
         public void CheckSunrise()
         {
-            Assert.AreEqual(1570601610, OWMAS.OWMADTO.OWMR.city.sunrise);
+            Assert.GreaterOrEqual(OWMAS.OWMADTO.OWMR.city.sunrise, 1570601610);
         }
         [Test()]
         public void CheckSunset()
