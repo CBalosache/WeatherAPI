@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using OpenWeatherMapAPITest.Open_Weather_Map_API_Service;
+using OpenWeatherMapAPITest.Open_Weather_Map_API_Service.HTTP_Manager;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace OpenWeatherMapAPITest.Tests
     public class OpenWeatherMapServiceTest
     {
         private OpenWeatherMapApiService OWMAS = new OpenWeatherMapApiService();
+        private OpenWeatherMapApiCallManager OWMACM = new OpenWeatherMapApiCallManager();
 
         [Test()]
         public void WebbCallSuccessTest()
@@ -19,6 +21,15 @@ namespace OpenWeatherMapAPITest.Tests
             Assert.AreEqual(200, OWMAS.OWMADTO.OWMR.cod);
         }
         [Test()]
+        public void ContentTypeCheck()
+        {
+            Assert.AreEqual("Content-Type=application/json; charset=utf-8", OWMAS.OWMACM.restResponse.Headers[6].ToString());
+        }
+        [Test()]
+        public void HeadersNumberCheck()
+        {
+            Assert.AreEqual("9", OWMAS.OWMACM.restResponse.Headers.Count.ToString());
+        }
         public void MessageTest()
         {
             Assert.GreaterOrEqual(OWMAS.OWMADTO.OWMR.message, 0.00);
