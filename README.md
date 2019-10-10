@@ -1,3 +1,8 @@
+# NuGet Packages used
+- RestSharp
+- NUnit
+- NUnitTestAdapter
+- Newtonsoft.Json
 # WeatherAPI
  To be able to test if the information received from the API found on https://api.openweathermap.org was correct, a DTO(Data Tranfer Object) framework was build to help with manipulating the data.
  The framework is composed of:
